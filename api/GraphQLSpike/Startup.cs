@@ -51,10 +51,7 @@ namespace GraphQLSpike
 
         type Query {
           film(film_id: Int): Film
-        }
-
-        type Query {
-          films: Film
+          films: [Film]
         }
       ", conf =>
       {

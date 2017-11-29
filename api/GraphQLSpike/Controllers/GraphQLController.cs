@@ -17,12 +17,13 @@ namespace GraphQLSpike.Controllers
       _schema = schema;
     }
 
-    public async Task<ActionResult> Get()
+    public async Task<ActionResult> Get(string query)
     {
       var result = _schema.Execute(conf =>
       {
         //conf.Query = "{ film(film_id: 133) { film_id title } }";
-        conf.Query = "{ films { film_id title } }";
+        //conf.Query = "{ films { film_id title } }";
+        conf.Query = query;
       });
 
       Console.WriteLine(result);

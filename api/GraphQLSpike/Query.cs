@@ -12,10 +12,10 @@ namespace GraphQLSpike
   public class Query
   {
     [GraphQLMetadata("films")]
-    public async Task<IEnumerable<Film>> GetFilms()
+    public async Task<List<Film>> GetFilms()
     {
       var filmRepo = new FilmsRepo();
-      return await filmRepo.GetFilmsAsync();
+      return (await filmRepo.GetFilmsAsync()).ToList();
     }
 
     [GraphQLMetadata("film")]
