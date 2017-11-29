@@ -13,29 +13,24 @@ namespace GraphQLSpike.Controllers
   [Route("api/Films")]
   public class FilmsController : Controller
   {
-    public async Task Get()
+    private readonly ISchema _schema;
+
+    public FilmsController(ISchema schema)
     {
-      var schema = Schema.For(@"
-        type Film {
-          film_id: Int
-          title: String
-          description: String
-        }
+      _schema = schema;
+    }
 
-        type Query {
-          film(film_id: Int): Film
-        }
-      ", conf =>
+    public async Task<ActionResult> Get()
+    {
+      var result = _schema.Execute(conf =>
       {
-        conf.Types.Include<Query>();
-      });
-
-      var result = schema.Execute(conf =>
-      {
-        conf.Query = "{ film(film_id: 133) { film_id title } }";
+        //conf.Query = "{ film(film_id: 133) { film_id title } }";
+        conf.Query = "{ films { film_id title } }";
       });
 
       Console.WriteLine(result);
+
+      return Ok(result);
     }
   }
 }
