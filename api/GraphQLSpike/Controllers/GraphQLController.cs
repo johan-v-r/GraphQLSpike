@@ -25,9 +25,7 @@ namespace GraphQLSpike.Controllers
         //conf.Query = "{ films { film_id title } }";
         conf.Query = query;
       });
-
-      Console.WriteLine(result);
-
+      
       return Ok(result);
     }
   }

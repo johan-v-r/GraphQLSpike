@@ -46,7 +46,17 @@ namespace GraphQLSpike
         type Film {
           film_id: Int
           title: String
-          description: String
+          description: String,
+          release_year: Int,
+          language_id: Int,
+          rental_duration: Int,
+          rental_rate: Float,
+          length: Int,
+          replacement_cost: Float,
+          rating: String,
+          last_update: String,
+          special_features: [String],
+          fulltext: [String]
         }
 
         type Query {
